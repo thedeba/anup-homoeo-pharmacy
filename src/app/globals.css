@@ -1,0 +1,299 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #575353cd;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #4f4d4ddb;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* Vertical marquee styles for left-side image rail */
+.left-marquee {
+  flex: 0 0 140px;
+  display: flex;
+  align-items: center;
+}
+
+.vertical-marquee {
+  width: 100%;
+  overflow: hidden;
+  height: auto; /* increased to give more room for the bottom/vertical marquee */
+}
+
+.vertical-marquee-track {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: marquee-vertical 14s linear infinite;
+}
+
+.vertical-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-vertical {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+/* Horizontal marquee for top image rail */
+.top-marquee {
+  width: 100%;
+  overflow: hidden;
+  height: auto; /* decreased top marquee height as requested */
+  display: flex;
+  align-items: center;
+  background: transparent;
+}
+
+.horizontal-marquee-track {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  padding: 25px;
+  animation: marquee-horizontal 18s linear infinite;
+  will-change: transform;
+}
+
+.horizontal-marquee-track:hover {
+  /* Pause the marquee when the user hovers anywhere on the track.
+     We also add a cursor hint. The image transition below gives a
+     smooth visual result when the user keeps the pointer on a picture. */
+  animation-play-state: paused;
+  cursor: grab;
+}
+
+/* Smooth transitions for the images inside the marquee */
+.horizontal-marquee-track .relative img {
+  display: block;
+  transition: transform 300ms cubic-bezier(.2,.8,.2,1),
+              opacity 200ms ease,
+              filter 200ms ease;
+  will-change: transform, opacity, filter;
+}
+
+/* Slight scale and brightness on hover for the individual picture */
+.horizontal-marquee-track .relative:hover img {
+  transform: scale(1.04);
+  filter: brightness(1.03);
+}
+
+@keyframes marquee-horizontal {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vertical-marquee-track,
+  .horizontal-marquee-track {
+    animation: none;
+  }
+}
+
+/* Slideshow crossfade styles */
+.slideshow-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.slideshow-image {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 700ms cubic-bezier(.2,.8,.2,1);
+  will-change: opacity, transform;
+}
+
+.slideshow-image.active {
+  opacity: 1;
+}
+
+/* Make sure images cover the container */
+.slideshow-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 3-up carousel styles */
+.carousel-root {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.carousel-wrapper {
+  width: 100%;
+}
+
+.carousel-inner {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .carousel-inner {
+    height: 500px;
+  }
+}
+
+.carousel-side {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.85;
+  transition: all 300ms ease;
+  z-index: 1;
+}
+
+.carousel-side.left {
+  left: 3%;
+}
+
+.carousel-side.right {
+  right: 3%;
+}
+
+/* Extra positions for a 5-up layout: two left, center, two right */
+.pos-prev2,
+.pos-next2,
+.pos-prev1,
+.pos-next1 {
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+  will-change: transform, opacity;
+}
+
+.pos-prev2 {
+  left: 1%;
+  transform: translateY(-50%) scale(0.78);
+  opacity: 0.65;
+  z-index: 1;
+}
+
+.pos-prev1 {
+  left: 8%;
+  transform: translateY(-50%) scale(0.9);
+  opacity: 0.85;
+  z-index: 3;
+}
+
+.pos-next1 {
+  right: 8%;
+  transform: translateY(-50%) scale(0.9);
+  opacity: 0.85;
+  z-index: 3;
+}
+
+.pos-next2 {
+  right: 1%;
+  transform: translateY(-50%) scale(0.78);
+  opacity: 0.65;
+  z-index: 1;
+}
+
+@media (min-width: 640px) {
+  .pos-prev2, .pos-next2 { transform: translateY(-50%) scale(0.78); }
+  .pos-prev1, .pos-next1 { transform: translateY(-50%) scale(0.95); }
+}
+
+.carousel-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+/* The inner wrapper receives the entry/hold/exit animation */
+.center-anim {
+  width: 240px;
+  height: 160px;
+  display: block;
+  animation: center-slide 7000ms cubic-bezier(.2,.8,.2,1) both;
+}
+
+@media (min-width: 640px) {
+  .center-anim {
+    width: 380px;
+    height: 420px;
+  }
+}
+
+@keyframes center-slide {
+  0% { transform: translateX(100%); opacity: 0.6; }
+  14% { transform: translateX(0%); opacity: 1; }
+  86% { transform: translateX(0%); opacity: 1; }
+  100% { transform: translateX(-100%); opacity: 0.6; }
+}
+
+.center-anim .relative img,
+.carousel-side .relative img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Slot-based shifting animation (persistent nodes move to new slots) */
+.slot {
+  position: absolute;
+  top: 50%;
+  transition: left 1000ms cubic-bezier(.2,.8,.2,1), transform 1000ms cubic-bezier(.2,.8,.2,1), opacity 1000ms ease;
+  will-change: left, transform, opacity;
+  pointer-events: none;
+}
+
+.slot-inner img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slot-center { left: 50%; transform: translate(-50%, -50%) scale(1); z-index: 30; opacity: 1; }
+.slot-prev1 { left: 28%; transform: translate(-50%, -50%) scale(0.92); z-index: 20; opacity: 0.9; }
+.slot-prev2 { left: 8%; transform: translate(-50%, -50%) scale(0.78); z-index: 10; opacity: 0.65; }
+.slot-next1 { left: 72%; transform: translate(-50%, -50%) scale(0.92); z-index: 20; opacity: 0.9; }
+.slot-next2 { left: 92%; transform: translate(-50%, -50%) scale(0.78); z-index: 10; opacity: 0.65; }
+
+.slot-off { left: 140%; transform: translate(-50%, -50%) scale(0.7); opacity: 0; z-index: 0; }
+
+@media (max-width: 640px) {
+  .slot-prev2 { left: 4%; }
+  .slot-prev1 { left: 18%; }
+  .slot-next1 { left: 82%; }
+  .slot-next2 { left: 96%; }
+}

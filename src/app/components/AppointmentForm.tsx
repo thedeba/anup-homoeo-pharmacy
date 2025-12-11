@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function AppointmentForm() {
   const [patientName, setPatientName] = useState('');
@@ -9,6 +9,25 @@ export default function AppointmentForm() {
   const [appointmentTime, setAppointmentTime] = useState('');
   const [reason, setReason] = useState('');
   const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    // Set current date and time on component mount
+    const now = new Date();
+    
+    // Format date as YYYY-MM-DD
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;
+    
+    // Format time as HH:MM
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const formattedTime = `${hours}:${minutes}`;
+    
+    setAppointmentDate(formattedDate);
+    setAppointmentTime(formattedTime);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -101,7 +120,7 @@ export default function AppointmentForm() {
       </div>
       <button
         type="submit"
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
       >
         Book Appointment
       </button>

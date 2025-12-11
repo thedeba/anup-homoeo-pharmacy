@@ -4,11 +4,10 @@ const connectionString = process.env.db_connection_string || process.env.DB_CONN
 
 // Reuse a global pool in development to avoid exhausting connections
 declare global {
-  // eslint-disable-next-line vars-on-top, no-var
   var __pgPool: Pool | undefined;
 }
 
-let pool: Pool | undefined = (global as any).__pgPool;
+let pool: Pool | undefined = (global as typeof globalThis).__pgPool;
 
 async function ensureTable(p: Pool) {
   try {
@@ -35,7 +34,7 @@ export default async function dbConnect() {
 
   if (!pool) {
     pool = new Pool({ connectionString });
-    (global as any).__pgPool = pool;
+    (global as typeof globalThis).__pgPool = pool;
     // create table asynchronously
     ensureTable(pool).catch(() => {});
   }

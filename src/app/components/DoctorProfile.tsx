@@ -1,4 +1,9 @@
 
+'use client';
+
+import { useState } from 'react';
+import AppointmentForm from './AppointmentForm';
+
 type DoctorProfileProps = {
   name?: string;
   specialization?: string;
@@ -7,7 +12,6 @@ type DoctorProfileProps = {
   experience?: string;
   photoUrl?: string;
   phone?: string;
-  appointmentUrl?: string;
 };
 
 export default function DoctorProfile({
@@ -18,71 +22,120 @@ export default function DoctorProfile({
   experience = '35+ Years',
   photoUrl = '/doctor.jpg',
   phone = '+8801714623846',
-  appointmentUrl = '/appointments',
 }: DoctorProfileProps) {
+  const [showModal, setShowModal] = useState(false);
   return (
     <div className="w-full mb-8">
-      <div className="bg-gradient-to-r from-indigo-50 via-white to-pink-50 p-6 rounded-2xl shadow-xl">
-        <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
-          <div className="flex-shrink-0">
-            <div className="rounded-full p-1 bg-gradient-to-tr from-indigo-300 via-purple-200 to-pink-300 shadow-md">
-              <div className="rounded-full overflow-hidden w-36 h-36 bg-white ring-4 ring-white">
-                <img src={photoUrl} alt={name} className="w-full h-full object-cover" />
-              </div>
-            </div>
-          </div>
-
-          <div className="flex-1">
-            <div className="flex items-center justify-between flex-col md:flex-row gap-3 md:gap-0">
-              <div>
-                <h2 className="text-2xl md:text-3xl font-extrabold text-slate-800">{name}</h2>
-                <div className="mt-2 flex items-center gap-2">
-                  <span className="inline-flex items-center gap-2 text-sm font-medium text-indigo-700 bg-indigo-100/80 px-3 py-1 rounded-full">
-                    <svg className="w-4 h-4 text-indigo-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 2C8.13 2 5 5.13 5 9c0 7 7 13 7 13s7-6 7-13c0-3.87-3.13-7-7-7z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-                      <circle cx="12" cy="9" r="2.2" fill="currentColor" />
-                    </svg>
-                    {specialization}
-                  </span>
-                  <span className="text-sm text-slate-500">•</span>
-                  <span className="text-sm text-slate-600">{experience}</span>
+      <div className="rounded-2xl overflow-hidden shadow-lg border border-slate-100 dark:border-slate-800 bg-white dark:bg-gray-800">
+        <div className="p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {/* Left division: compact profile card */}
+          <aside className="flex flex-col items-center gap-4 md:gap-6">
+            <div className="relative flex items-center justify-center">
+              <div className="rounded-full p-1 bg-gradient-to-tr from-indigo-400 via-purple-300 to-pink-400 shadow-md">
+                <div className="w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden bg-white dark:bg-slate-800 ring-4 ring-white/90">
+                  <img src={photoUrl} alt={name} className="w-full h-full object-cover" />
                 </div>
               </div>
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-emerald-500 text-white text-xs px-2 py-1 rounded-full shadow-sm">Available</div>
+            </div>
 
-              <div className="flex items-center gap-3">
-                <a
-                  href={`tel:${phone.replace(/\s+/g, '')}`}
-                  className="inline-flex items-center gap-2 bg-white/90 hover:bg-white text-black px-3 py-2 rounded-md text-sm font-medium shadow-sm border "
-                >
-                  <svg className="w-4 h-4 text-emerald-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22 16.92V21a1 1 0 0 1-1.11 1A19 19 0 0 1 3 5.11 1 1 0 0 1 4 4h4.09a1 1 0 0 1 1 .75c.12.75.37 1.86.8 2.86a1 1 0 0 1-.24 1l-1.27 1.27a16 16 0 0 0 6.22 6.22l1.27-1.27a1 1 0 0 1 1-.24c1 .43 2.11.68 2.86.8a1 1 0 0 1 .75 1V22z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                  Call
-                </a>
+            <div className="text-center md:text-left">
+              <h3 className="text-lg md:text-xl font-bold text-slate-900 dark:text-white">{name}</h3>
+              <div className="text-sm text-indigo-700 mt-1 inline-flex items-center gap-2 bg-indigo-100/80 px-3 py-1 rounded-full">{specialization}</div>
+              <div className="text-sm text-slate-500 mt-2">{education} • <span className="font-medium text-slate-700 dark:text-slate-200">{experience}</span></div>
+            </div>
 
-                <a
-                  href={appointmentUrl}
-                  className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-semibold shadow-md transform hover:-translate-y-0.5 transition"
-                >
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 7V3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M16 7V3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-                    <rect x="3" y="7" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="1.4" />
-                  </svg>
-                  Book
-                </a>
+            <div className="flex flex-wrap items-center gap-2 mt-2 justify-center">
+              {/* Social links & other info*/}
+              <div className="flex items-center gap-2 px-2 py-1 rounded-md text-white text-xs sm:text-sm bg-gradient-to-r from-yellow-500 to-green-500 shadow-md">Online Consultation</div>
+              <div className="flex items-center gap-2 px-2 py-1 rounded-md text-white text-xs sm:text-sm bg-gradient-to-r from-green-500 to-pink-500 shadow-md">Appointment Available</div>
+              <div className="flex items-center gap-2 px-2 py-1 rounded-md text-white text-xs sm:text-sm bg-gradient-to-r from-pink-500 to-blue-500 shadow-md">Homeopathic Counselling</div>
+              <div className="flex items-center gap-2 px-2 py-1 rounded-md text-white text-xs sm:text-sm bg-gradient-to-r from-blue-500 to-violet-500 shadow-md">Personalized Treatment</div>
+              <div className="flex items-center gap-2 px-2 py-1 rounded-md text-white text-xs sm:text-sm bg-gradient-to-r from-violet-500 to-purple-500 shadow-md">Follow-up Support</div>
+              <div className="flex items-center gap-2 px-2 py-1 rounded-md text-white text-xs sm:text-sm bg-gradient-to-r from-purple-500 to-yellow-500 shadow-md">Direct Calling Support</div>
+            </div>
+
+            <div className="mt-3 w-full md:w-auto">
+              <div className="text-xs text-slate-500">Tags</div>
+              <div className="mt-2 flex flex-wrap gap-2">
+                <span className="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-full">Acute Treatment</span>
+                <span className="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-full">Chronic Disease Management</span>
+                <span className="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-full">Skin & Allergy</span>
+                <span className="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-full">Respiratory Care</span>
+                <span className="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-full">Digestive Disorders</span>
+                <span className="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-full">Women’s Health</span>
+                <span className="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-full">Mental Health</span>
+                <span className="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-full">Pain Management</span>
+                <span className="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-full">Holistic Healing</span>
+                <span className="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-full">Urine Infection</span>
+                <span className="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-full">Pediatrics</span>
+              </div>
+            </div>
+          </aside>
+
+          {/* Right division: details, bio, stats */}
+          <section className="flex flex-col gap-4">
+            <div className="flex items-start justify-between">
+              <div>
+                <h4 className="text-lg font-semibold text-slate-800 dark:text-white">About</h4>
+                <p className="text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">{bio}</p>
+              </div>
+
+              <div className="hidden md:flex flex-col items-end gap-2">
+                {/* <div className="text-sm text-slate-500">Rating</div> */}
+                <div className="inline-flex items-center gap-2 bg-white dark:bg-slate-800 px-3 py-1 rounded-full shadow-sm">
+                  <svg className="w-4 h-4 text-yellow-400" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 .587l3.668 7.431L23.6 9.748l-5.8 5.657L19.336 24 12 19.897 4.664 24l1.536-8.595L0.4 9.748l7.932-1.73L12 .587z"/></svg>
+                  {/* <span className="font-medium text-slate-700 dark:text-slate-200">4.9</span> */}
+                </div>
               </div>
             </div>
 
-            <p className="text-slate-700 mt-4 leading-relaxed">{bio}</p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-2">
+              <div className="p-3 bg-slate-50 dark:bg-slate-800 rounded-lg">
+                <div className="text-xs text-slate-500">Education</div>
+                <div className="font-medium text-slate-800 dark:text-white mt-1">{education}</div>
+              </div>
+              <div className="p-3 bg-slate-50 dark:bg-slate-800 rounded-lg">
+                <div className="text-xs text-slate-500">Experience</div>
+                <div className="font-medium text-slate-800 dark:text-white mt-1">{experience}</div>
+              </div>
+              <div className="p-3 bg-slate-50 dark:bg-slate-800 rounded-lg">
+                <div className="text-xs text-slate-500">Patients</div>
+                <div className="font-medium text-slate-800 dark:text-white mt-1">10k+</div>
+              </div>
+            </div>
 
-            <div className="mt-4 flex flex-wrap gap-3 items-center">
-              <div className="text-sm text-slate-600">Education: <span className="font-medium text-slate-800">{education}</span></div>
-              <div className="text-sm text-slate-600">Experience: <span className="font-medium text-slate-800">{experience}</span></div>
+            <div className="mt-3 flex flex-col sm:flex-row gap-3">
+              <button onClick={() => setShowModal(true)} className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-indigo-600 to-pink-500 text-white font-semibold shadow-md hover:from-indigo-700 hover:to-pink-600 transition-colors duration-300">Book Appointment</button>
+              <a href={`tel:${phone.replace(/\s+/g, '')}`} className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 text-sm shadow-sm">Call</a>
+            </div>
+
+            <div className="mt-4 text-sm text-slate-500">Additional info</div>
+            <div className="mt-2 text-sm text-slate-700 dark:text-slate-300">Specializes in individualized homeopathic treatment plans, dietary and lifestyle counseling, and long-term chronic case management.</div>
+          </section>
+        </div>
+      </div>
+
+      {/* Modal Overlay */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center z-50 p-4 backdrop-blur-sm" onClick={() => setShowModal(false)}>
+          <div className="bg-white dark:bg-slate-900 rounded-lg shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto relative" onClick={(e) => e.stopPropagation()}>
+            {/* Close Button */}
+            <button
+              onClick={() => setShowModal(false)}
+              className="absolute top-4 right-4 text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 z-10"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            {/* Form Content */}
+            <div className="p-6">
+              <AppointmentForm />
             </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

@@ -12,16 +12,23 @@ export default function NavBar() {
         <div className="flex items-center gap-3">
           <Link href="/" className="flex items-center gap-3">
             <img src="/logo.gif" alt="dna" className="h-10 w-10 sm:h-12 sm:w-12 object-contain" />
-            <span className="hidden sm:inline text-sm sm:text-base text-gray-500">Holistic homeopathic care</span>
+            <div className="block sm:hidden justify-start items-center mb-2">
+              <span className="text-lg font-poppins font-bold text-gray-800">Anup Homoeo Pharmacy</span>
+              <p className="text-xs text-gray-500">Holistic homeopathic care</p>
+            </div>
+            <div className="hidden sm:block">
+              <span className="text-lg font-poppins font-bold text-gray-800">Anup Homoeo Pharmacy</span>
+              <p className="text-xs text-gray-500">Holistic homeopathic care</p>
+            </div>
           </Link>
         </div>
 
         <div className="hidden sm:flex items-center gap-6">
-          <Link href="#" className="text-gray-700 hover:text-gray-900">Home</Link>
-          <Link href="#blogs" className="text-gray-700 hover:text-gray-900">Blogs</Link>
-          <Link href="#appointments" className="text-gray-700 hover:text-gray-900">Appointments</Link>
-          <Link href="#location" className="text-gray-700 hover:text-gray-900">Location</Link>
-          <Link href="#contact" className="text-gray-700 hover:text-gray-900">Contact</Link>
+          <Link href="#" className="text-gray-700 hover:text-gray-900 hover:bg-white px-3 py-2 rounded-md">Home</Link>
+          <Link href="#blogs" className="text-gray-700 hover:text-gray-900 hover:bg-white px-3 py-2 rounded-md">Blogs</Link>
+          <Link href="#appointments" className="text-gray-700 hover:text-gray-900 hover:bg-white px-3 py-2 rounded-md">Appointments</Link>
+          <Link href="#location" className="text-gray-700 hover:text-gray-900 hover:bg-white px-3 py-2 rounded-md">Location</Link>
+          <Link href="#contact" className="text-gray-700 hover:text-gray-900 hover:bg-white px-3 py-2 rounded-md">Contact</Link>
         </div>
 
         <div className="sm:hidden">
@@ -38,15 +45,11 @@ export default function NavBar() {
       {open && (
         <div className="sm:hidden bg-white/95 border-t">
           <div className="px-6 py-4 flex flex-col gap-3">
-            <div className="flex items-center gap-3 pb-2 border-b border-gray-100">
-              <img src="/logo.gif" alt="Default Logo" className="h-20 w-20 object-contain" />
-              <span className="text-sm text-gray-500">Holistic homeopathic care</span>
-            </div>
-            <Link href="/" className="text-gray-700">Home</Link>
-            <Link href="#blogs" className="text-gray-700">Blogs</Link>
-            <Link href="#appointments" className="text-gray-700">Appointments</Link>
-            <Link href="#location" className="text-gray-700">Location</Link>
-            <Link href="#contact" className="text-gray-700">Contact</Link>
+            <Link href="/" className="text-gray-700 hover:text-gray-900 hover:bg-gray-300 px-3 py-2 rounded-md">Home</Link>
+            <Link href="#blogs" className="text-gray-700 hover:text-gray-900 hover:bg-gray-300 px-3 py-2 rounded-md">Blogs</Link>
+            <Link href="#appointments" className="text-gray-700 hover:text-gray-900 hover:bg-gray-300 px-3 py-2 rounded-md">Appointments</Link>
+            <Link href="#location" className="text-gray-700 hover:text-gray-900 hover:bg-gray-300 px-3 py-2 rounded-md">Location</Link>
+            <Link href="#contact" className="text-gray-700 hover:text-gray-900 hover:bg-gray-300 px-3 py-2 rounded-md">Contact</Link>
           </div>
         </div>
       )}

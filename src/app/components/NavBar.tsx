@@ -29,7 +29,7 @@ export default function NavBar() {
           <Link href="/appointments" className="text-gray-700 hover:text-gray-900 hover:bg-white px-3 py-2 rounded-md">Appointments</Link>
           <Link href="#location" className="text-gray-700 hover:text-gray-900 hover:bg-white px-3 py-2 rounded-md">Location</Link>
           <Link href="#contact" className="text-gray-700 hover:text-gray-900 hover:bg-white px-3 py-2 rounded-md">Contact</Link>
-          {/* <Link href="/admin/blogs" className="text-gray-700 hover:text-gray-900 hover:bg-white px-3 py-2 rounded-md">Admin</Link> */}
+          {/* <Link href="/post/blogs" className="text-gray-700 hover:text-gray-900 hover:bg-white px-3 py-2 rounded-md">Admin</Link> */}
         </div>
 
         <div className="sm:hidden">
@@ -51,7 +51,6 @@ export default function NavBar() {
             <Link href="/appointments" className="text-gray-700 hover:text-gray-900 hover:bg-gray-300 px-3 py-2 rounded-md">Appointments</Link>
             <Link href="#location" className="text-gray-700 hover:text-gray-900 hover:bg-gray-300 px-3 py-2 rounded-md">Location</Link>
             <Link href="#contact" className="text-gray-700 hover:text-gray-900 hover:bg-gray-300 px-3 py-2 rounded-md">Contact</Link>
-            <Link href="/admin/blogs" className="text-gray-700 hover:text-gray-900 hover:bg-gray-300 px-3 py-2 rounded-md">Admin</Link>
           </div>
         </div>
       )}

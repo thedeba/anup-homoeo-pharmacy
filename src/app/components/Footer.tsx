@@ -25,7 +25,7 @@ export default function Footer() {
             <h5 className="font-semibold mb-3">Quick Links</h5>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#" className="hover:underline">Home</a>
+                <a href="#top" className="hover:underline">Home</a>
               </li>
               <li>
                 <a href="#contact" className="hover:underline">Contact</a>
@@ -49,7 +49,7 @@ export default function Footer() {
                   <path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 6.2A4.8 4.8 0 1016.8 13 4.8 4.8 0 0012 8.2zm6.4-3.6a1.1 1.1 0 11-1.1 1.1 1.1 1.1 0 011.1-1.1z" />
                 </svg>
               </a>
-              <a href="#" aria-label="WhatsApp" className="bg-white/20 hover:bg-white/30 p-2 rounded-full">
+              <a href="https://wa.me/+8801714623846" aria-label="WhatsApp" className="bg-white/20 hover:bg-white/30 p-2 rounded-full">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-4 h-4 fill-white" aria-hidden>
                   <path d="M20.5 3.5A11.9 11.9 0 0012 0C5.4 0 .2 5.4.2 12c0 2 0.5 3.9 1.4 5.6L0 24l6.7-1.6a11.9 11.9 0 005.3 1.2c6.6 0 11.9-5.4 11.9-12 0-3.2-1.3-6.1-3.4-8.1zM12 21.2a9.1 9.1 0 01-4.6-1.2l-.3-.2-4 1 1-3.9-.2-.4A9 9 0 1121 12 9 9 0 0112 21.2zM17 14.6c-.3-.2-1.8-.9-2.1-1-.3-.1-.6-.2-.9.2s-1 .9-1.2 1.1c-.2.3-.4.3-.7.1-.7-.4-1.4-1.3-2-2.4-.1-.2 0-.4.1-.6.1-.2.3-.6.4-.9.1-.3 0-.5-.1-.7-.2-.2-.9-2-1.3-2.7-.3-.7-.6-.6-.9-.6-.2 0-.5 0-.8 0-.3 0-.7.1-.9.3-.3.2-.8.8-.8 1.8s.9 2.1 1 2.2c.1.2 1.6 2.5 3.9 3.5 2.3 1 2.3.7 2.7.6.4-.1 1.4-.6 1.6-1.2.2-.6.2-1 .1-1.2 0-.1-.2-.2-.4-.3z" />
                 </svg>

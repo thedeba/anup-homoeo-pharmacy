@@ -45,12 +45,15 @@ export default function DoctorProfile({
               <div className="text-sm text-slate-500 mt-2">{education} • <span className="font-medium text-slate-700 dark:text-slate-200">{experience}</span></div>
             </div>
 
-            <div className="w-full border-t border-slate-200 dark:border-slate-700">
-              svg whatsapp icon
+            <div className="w-auto border-t border-slate-200 dark:border-slate-700">
+              <a href="https://wa.me/+8801714623846" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="bg-green/20 p-2 rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-4 h-4 fill-white" aria-hidden>
+                  <path d="M20.5 3.5A11.9 11.9 0 0012 0C5.4 0 .2 5.4.2 12c0 2 0.5 3.9 1.4 5.6L0 24l6.7-1.6a11.9 11.9 0 005.3 1.2c6.6 0 11.9-5.4 11.9-12 0-3.2-1.3-6.1-3.4-8.1zM12 21.2a9.1 9.1 0 01-4.6-1.2l-.3-.2-4 1 1-3.9-.2-.4A9 9 0 1121 12 9 9 0 0112 21.2zM17 14.6c-.3-.2-1.8-.9-2.1-1-.3-.1-.6-.2-.9.2s-1 .9-1.2 1.1c-.2.3-.4.3-.7.1-.7-.4-1.4-1.3-2-2.4-.1-.2 0-.4.1-.6.1-.2.3-.6.4-.9.1-.3 0-.5-.1-.7-.2-.2-.9-2-1.3-2.7-.3-.7-.6-.6-.9-.6-.2 0-.5 0-.8 0-.3 0-.7.1-.9.3-.3.2-.8.8-.8 1.8s.9 2.1 1 2.2c.1.2 1.6 2.5 3.9 3.5 2.3 1 2.3.7 2.7.6.4-.1 1.4-.6 1.6-1.2.2-.6.2-1 .1-1.2 0-.1-.2-.2-.4-.3z" />
+                </svg>
+              </a>
             </div>
 
             <div className="flex flex-wrap items-center gap-2 mt-2 justify-center">
-              {/* Social links & other info*/}
               
               <div className="flex items-center gap-2 px-2 py-1 rounded-md text-white text-xs sm:text-sm bg-gradient-to-r from-yellow-500 to-green-500 shadow-md">Online Consultation</div>
               <div className="flex items-center gap-2 px-2 py-1 rounded-md text-white text-xs sm:text-sm bg-gradient-to-r from-green-500 to-pink-500 shadow-md">Appointment Available</div>

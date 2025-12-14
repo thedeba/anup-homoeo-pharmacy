@@ -15,7 +15,7 @@ export default function Home() {
   const [showAppointments, setShowAppointments] = useState(false);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-8">
+    <main id="top" className="flex min-h-screen flex-col items-center justify-between p-8">
       <LeftMarquee />
       <div className="w-full max-w-7xl flex gap-8 items-start">
         <div className="flex-1">

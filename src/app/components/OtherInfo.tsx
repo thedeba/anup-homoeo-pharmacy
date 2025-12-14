@@ -40,7 +40,7 @@ export default function OtherInfo({
   mapEmbedUrl,
 }: OtherInfoProps) {
   return (
-    <section className="w-full max-w-auto mb-8">
+    <section id="contact" className="w-full max-w-auto mb-8">
       <div className="bg-gradient-to-r from-dawn via-white to-rose-50 p-6 rounded-2xl shadow-xl">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-3xl font-extrabold text-slate-800">{clinicName}</h2>

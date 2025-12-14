@@ -9,6 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.8.0",
+    "@supabase/supabase-js": "^2.87.1",
     "mongoose": "^8.18.1",
     "next": "^16.0.8",
     "pg": "^8.10.0",

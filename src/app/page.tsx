@@ -49,6 +49,9 @@ export default function Home() {
       )}
 
       <Blogs />
+      <section id="appointments" className="w-full max-w-7xl mt-8">
+        <AppointmentList />
+      </section>
       <Location />
       <Footer />
     </main>

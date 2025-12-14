@@ -45,8 +45,13 @@ export default function DoctorProfile({
               <div className="text-sm text-slate-500 mt-2">{education} • <span className="font-medium text-slate-700 dark:text-slate-200">{experience}</span></div>
             </div>
 
+            <div className="w-full border-t border-slate-200 dark:border-slate-700">
+              svg whatsapp icon
+            </div>
+
             <div className="flex flex-wrap items-center gap-2 mt-2 justify-center">
               {/* Social links & other info*/}
+              
               <div className="flex items-center gap-2 px-2 py-1 rounded-md text-white text-xs sm:text-sm bg-gradient-to-r from-yellow-500 to-green-500 shadow-md">Online Consultation</div>
               <div className="flex items-center gap-2 px-2 py-1 rounded-md text-white text-xs sm:text-sm bg-gradient-to-r from-green-500 to-pink-500 shadow-md">Appointment Available</div>
               <div className="flex items-center gap-2 px-2 py-1 rounded-md text-white text-xs sm:text-sm bg-gradient-to-r from-pink-500 to-blue-500 shadow-md">Homeopathic Counselling</div>

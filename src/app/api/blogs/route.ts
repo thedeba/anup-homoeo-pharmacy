@@ -4,10 +4,9 @@ import { NextResponse } from 'next/server';
 export async function GET() {
   try {
     const { data, error } = await supabase
-      .from('appointments')
-      .select('id, patient_name, patient_contact, appointment_date, appointment_time, reason')
-      .order('appointment_date', { ascending: true })
-      .order('appointment_time', { ascending: true });
+      .from('blogs')
+      .select('id, title, excerpt, content, photo, created_at')
+      .order('created_at', { ascending: false });
 
     if (error) throw error;
 
@@ -20,18 +19,17 @@ export async function GET() {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { patientName, patientContact, appointmentDate, appointmentTime, reason } = body;
+    const { title, excerpt, content, photo } = body;
 
     const { data, error } = await supabase
-      .from('appointments')
+      .from('blogs')
       .insert({
-        patient_name: patientName,
-        patient_contact: patientContact,
-        appointment_date: appointmentDate,
-        appointment_time: appointmentTime,
-        reason
+        title,
+        excerpt,
+        content,
+        photo
       })
-      .select('id, patient_name, patient_contact, appointment_date, appointment_time, reason')
+      .select('id, title, excerpt, content, photo, created_at')
       .single();
 
     if (error) throw error;

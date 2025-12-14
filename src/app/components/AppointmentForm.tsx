@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function AppointmentForm() {
   const [patientName, setPatientName] = useState('');
@@ -9,6 +10,7 @@ export default function AppointmentForm() {
   const [appointmentTime, setAppointmentTime] = useState('');
   const [reason, setReason] = useState('');
   const [message, setMessage] = useState('');
+  const router = useRouter();
 
   useEffect(() => {
     // Set current date and time on component mount
@@ -56,6 +58,7 @@ export default function AppointmentForm() {
       setAppointmentDate('');
       setAppointmentTime('');
       setReason('');
+      router.push('/');
     } else {
       setMessage(`Error: ${data.error}`);
     }

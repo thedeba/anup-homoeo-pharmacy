@@ -23,7 +23,7 @@ type OtherInfoProps = {
 export default function OtherInfo({
   clinicName = 'Our Clinic',
   tagline = 'Compassionate care • Evidence-informed homeopathy',
-  clinic_address = 'Anup Homoeo Pharmacy',
+  clinic_address = 'Anup Homeo Pharmacy',
   address = 'Vober Bazar, Parbatipur',
   city = 'Dinajpur, Bangladesh',
   phone = '+8801714623846',

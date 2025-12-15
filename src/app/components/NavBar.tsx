@@ -13,11 +13,11 @@ export default function NavBar() {
           <Link href="/" className="flex items-center gap-3">
             <img src="/logo.gif" alt="dna" className="h-10 w-10 sm:h-12 sm:w-12 object-contain" />
             <div className="block sm:hidden justify-start items-center mb-2">
-              <span className="text-lg font-poppins font-bold text-gray-800">Anup Homoeo Pharmacy</span>
+              <span className="text-lg font-poppins font-bold text-gray-800">Anup Homeo Pharmacy</span>
               <p className="text-xs text-gray-500">Holistic homeopathic care</p>
             </div>
             <div className="hidden sm:block">
-              <span className="text-lg font-poppins font-bold text-gray-800">Anup Homoeo Pharmacy</span>
+              <span className="text-lg font-poppins font-bold text-gray-800">Anup Homeo Pharmacy</span>
               <p className="text-xs text-gray-500">Holistic homeopathic care</p>
             </div>
           </Link>

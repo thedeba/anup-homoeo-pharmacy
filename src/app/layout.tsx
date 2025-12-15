@@ -28,9 +28,9 @@ export const metadata: Metadata = {
     "Health blogs",
   ],
   openGraph: {
-    title: "Anup Homeo Pharmacy - Compassionate Homeopathic Care",
+    title: "Anup Homeo Pharmacy",
     description:
-      "Anup Homeo Pharmacy offers compassionate and evidence-informed homeopathic care. Book appointments, read health blogs, and discover our services.",
+      "Offers compassionate and evidence-informed homeopathic care. Book appointments, read health blogs, and discover our services.",
     images: [
       {
         url: "/banner.png",

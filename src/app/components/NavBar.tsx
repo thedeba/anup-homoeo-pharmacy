@@ -2,9 +2,19 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function NavBar() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "/#blogs", label: "Blogs" },
+    { href: "/appointments", label: "Appointments" },
+    { href: "/#location", label: "Location" },
+    { href: "/#contact", label: "Contact" },
+  ];
 
   return (
     <header className="w-full bg-white/80 backdrop-blur sticky top-0 z-40 shadow-sm">
@@ -24,12 +34,17 @@ export default function NavBar() {
         </div>
 
         <div className="hidden sm:flex items-center gap-6">
-          <Link href="/" className="text-gray-700 hover:text-gray-900 hover:bg-white px-3 py-2 rounded-md">Home</Link>
-          <Link href="#blogs" className="text-gray-700 hover:text-gray-900 hover:bg-white px-3 py-2 rounded-md">Blogs</Link>
-          <Link href="/appointments" className="text-gray-700 hover:text-gray-900 hover:bg-white px-3 py-2 rounded-md">Appointments</Link>
-          <Link href="#location" className="text-gray-700 hover:text-gray-900 hover:bg-white px-3 py-2 rounded-md">Location</Link>
-          <Link href="#contact" className="text-gray-700 hover:text-gray-900 hover:bg-white px-3 py-2 rounded-md">Contact</Link>
-          {/* <Link href="/post/blogs" className="text-gray-700 hover:text-gray-900 hover:bg-white px-3 py-2 rounded-md">Admin</Link> */}
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`text-gray-700 hover:text-gray-900 hover:bg-white px-3 py-2 rounded-md ${
+                pathname === link.href ? "font-bold" : ""
+              }`}
+            >
+              {link.label}
+            </Link>
+          ))}
         </div>
 
         <div className="sm:hidden">
@@ -46,11 +61,18 @@ export default function NavBar() {
       {open && (
         <div className="sm:hidden bg-white/95 border-t">
           <div className="px-6 py-4 flex flex-col gap-3">
-            <Link href="/" className="text-gray-700 hover:text-gray-900 hover:bg-gray-300 px-3 py-2 rounded-md">Home</Link>
-            <Link href="#blogs" className="text-gray-700 hover:text-gray-900 hover:bg-gray-300 px-3 py-2 rounded-md">Blogs</Link>
-            <Link href="/appointments" className="text-gray-700 hover:text-gray-900 hover:bg-gray-300 px-3 py-2 rounded-md">Appointments</Link>
-            <Link href="#location" className="text-gray-700 hover:text-gray-900 hover:bg-gray-300 px-3 py-2 rounded-md">Location</Link>
-            <Link href="#contact" className="text-gray-700 hover:text-gray-900 hover:bg-gray-300 px-3 py-2 rounded-md">Contact</Link>
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className={`text-gray-700 hover:text-gray-900 hover:bg-gray-300 px-3 py-2 rounded-md ${
+                  pathname === link.href ? "font-bold" : ""
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
           </div>
         </div>
       )}

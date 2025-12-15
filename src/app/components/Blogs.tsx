@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 interface Blog {
   id: string;
@@ -62,7 +63,7 @@ export default function Blogs() {
                   <p className="line-clamp-3">{blog.content}</p>
                 </div>
               )}
-              <a href="#" className="text-blue-600 hover:underline">Read more →</a>
+              <Link href={`/post/blogs/${blog.id}`} className="text-blue-600 hover:underline">Read more →</Link>
             </article>
           ))}
         </div>

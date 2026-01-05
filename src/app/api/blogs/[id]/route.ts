@@ -1,9 +1,9 @@
 import { supabase } from '@/lib/db';
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
-    const id = params.id;
+    const { id } = await params;
     const body = await req.json();
     const { title, excerpt, content, photo } = body;
 
@@ -31,9 +31,9 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   }
 }
 
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
-    const id = params.id;
+    const { id } = await params;
 
     const { data, error } = await supabase
       .from('blogs')

@@ -57,10 +57,10 @@ export default function Blogs() {
                 />
               )}
               <h3 className="text-xl font-semibold mb-2 text-gray-800">{blog.title}</h3>
-              <p className="text-gray-600 mb-4">{blog.excerpt}</p>
+              <p className="text-gray-600 mb-4 whitespace-pre-wrap" style={{ whiteSpace: 'pre-wrap' }}>{blog.excerpt}</p>
               {blog.content && (
                 <div className="text-gray-700 mb-4">
-                  <p className="line-clamp-3">{blog.content}</p>
+                  <p className="line-clamp-3 whitespace-pre-wrap" style={{ whiteSpace: 'pre-wrap' }}>{blog.content}</p>
                 </div>
               )}
               <Link href={`/post/blogs/${blog.id}`} className="text-blue-600 hover:underline">Read more →</Link>

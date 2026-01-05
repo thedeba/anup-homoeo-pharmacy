@@ -66,7 +66,7 @@ export default function BlogPostPage() {
               className="w-full h-96 object-cover rounded-lg mb-8"
             />
           )}
-          <div className="prose prose-lg max-w-none text-gray-700">
+          <div className="prose prose-lg max-w-none text-gray-700 whitespace-pre-wrap" style={{ whiteSpace: 'pre-wrap' }}>
             {blog.content}
           </div>
         </div>
